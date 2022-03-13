@@ -129,13 +129,13 @@ _Insertion and deletion_
 
 _Dynamic data structure_
   
-    - A linked list is a dynamic data structure that can grow and shrink at runtime by allocating and deallocating memory. There's no need to give an initial size at the time of creation.
-    - Whereas the size of an array is limited as the number of items is statically stored in the main memory.
+  - A linked list is a dynamic data structure that can grow and shrink at runtime by allocating and deallocating memory. There's no need to give an initial size at the time of creation.
+  - Whereas the size of an array is limited as the number of items is statically stored in the main memory.
 
 _No wastage of memory_
 
-    - as the size of a linked list can grow or shrink based on the needs of the program, there's no memory wasted because it is allocated at runtime.
-    - in arrays, if we declare the array size to be 10, and store 3 elements, then the array will occupy 10*sizeof(int) bytes of memory. Hence the memory wastage.
+  - as the size of a linked list can grow or shrink based on the needs of the program, there's no memory wasted because it is allocated at runtime.
+  - in arrays, if we declare the array size to be 10, and store 3 elements, then the array will occupy 10*sizeof(int) bytes of memory. Hence the memory wastage.
 
 ### When do we use linked lists and arrays?
 
@@ -213,95 +213,98 @@ In a stack the element that is most recently added is removed first. In a queue 
 Lets implement a queue using two stacks. let `q` be the queue and `s1` and `s2` be the two stacks. Stacks support push, pop, and peek operations and we need to use these to implement enqueue and dequeue operations.
 Queue `q` can be implemented in two methods:
 
-  1. By making enqueue operation costly.
+1. By making enqueue operation costly.
      
-    The oldest element is always at the top of `s1` which ensures dequeue operation to occur in O(1) time.
+  The oldest element is always at the top of `s1` which ensures dequeue operation to occur in O(1) time.
 
-    when we enqueue an element, while `s1` is not empty, we push everything from `s1` to `s2`.
-    Then we push the new element to `s1`.
-    Then we push everything back to `s1`.
-    This is O(n) operation.
+  when we enqueue an element, while `s1` is not empty, we push everything from `s1` to `s2`.
+  Then we push the new element to `s1`.
+  Then we push everything back to `s1`.
+  This is O(n) operation.
 
-    ```
+  ```
     enqueue(q, x):
       while not s1.isEmpty():
         s2.push(s1.pop())
       s1.push(x)
       while not s2.isEmpty():
         s1.push(s2.pop())
-    ```
+  ```
     
-    when we dequeue an element, we just pop the top element from `s1`. If `s1` is empty we throw error.
-    This is O(1) operation.
+  when we dequeue an element, we just pop the top element from `s1`. If `s1` is empty we throw error.
+  This is O(1) operation.
 
-    ```
+  ```
     dequeue(q):
       return s1.pop()
-    ```
+  ```
 
-  2. By making dequeue operation costly.
+2. By making dequeue operation costly.
      
-    Here for the enqueue operation the new element is pushed at the top of `s1`. The enqueue operation is O(1) and the dequeue operation is O(n).
+  Here for the enqueue operation the new element is pushed at the top of `s1`. The enqueue operation is O(1) and the dequeue operation is O(n).
 
-    ```
+  ```
     enqueue(q, x):
       s1.push(x)
-    ```
+  ```
 
-    when we dequeue an element, if `s2` is empty, we push everything from `s1` to `s2`.
-    Then we pop the top element from `s2`. This is O(n) operation.
+  when we dequeue an element, if `s2` is empty, we push everything from `s1` to `s2`.
+  Then we pop the top element from `s2`. This is O(n) operation.
 
-    ```
+  ```
     dequeue(q):
       if s2.isEmpty():
         while not s1.isEmpty():
           s2.push(s1.pop())
       return s2.pop()
-    ```
+  ```
+
 ### How to implement a stack using queues?
 
 We can implement a stack using queues. Let `s` be the stack and `q1` and `q2` be the queues. Queue supports enqueue, dequeue, init, and isEmpty operations and we need to use these to implement push, pop, and peek operations.
 
 We can implement stack in two ways:
 
-  1. By making push operation costly:
+1. By making push operation costly:
     
-    This method ensures that newly entered element is always at the front of `q1`, so that pop operation just dequeues the element from `q1`. This is O(n) operation.
+  This method ensures that newly entered element is always at the front of `q1`, so that pop operation just dequeues the element from `q1`. This is O(n) operation.
 
-    ```
+  ```
     push(s, x):
       while not q1.isEmpty():
         q2.enqueue(q1.dequeue())
       q1.enqueue(x)
       while not q2.isEmpty():
         q1.enqueue(q2.dequeue())
-    ```
+  ```
 
-    when we pop an element, we just dequeue the top element from `q1`. If `q1` is empty we throw error. This is O(1) operation.
+  when we pop an element, we just dequeue the top element from `q1`. If `q1` is empty we throw error. This is O(1) operation.
 
-    ```
+  ```
     pop(s):
       return q1.dequeue()
-    ```
-  2. By making pop operation costly:
-    
-    This method ensures that the element that is popped is always at the front of `q1`, so that push operation just enqueues the element at the front of `q1`. This is O(n) operation.
+  ```
 
-    ```
+2. By making pop operation costly:
+    
+  This method ensures that the element that is popped is always at the front of `q1`, so that push operation just enqueues the element at the front of `q1`. This is O(n) operation.
+
+  ```
     push(s, x):
       q1.enqueue(x)
-    ```
+  ```
 
-    when we pop an element, if `q2` is empty, we enqueue everything from `q1` to `q2`.
-    Then we dequeue the top element from `q2`. This is O(n) operation.
+  when we pop an element, if `q2` is empty, we enqueue everything from `q1` to `q2`.
+  Then we dequeue the top element from `q2`. This is O(n) operation.
 
-    ```
+  ```
     pop(s):
       if q2.isEmpty():
         while not q1.isEmpty():
           q2.enqueue(q1.dequeue())
       return q2.dequeue()
-    ```
+  ```
+
 ### What is a hashmap?
 
 A hashmap is a data structure that stores key-value pairs. The keys are unique and the values are not. It is a data structure that is used to implement a dictionary. It allows a constant time lookup of a value based on the key.
