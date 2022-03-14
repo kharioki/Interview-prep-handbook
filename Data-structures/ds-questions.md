@@ -27,6 +27,22 @@ Here are some questions and answers you may encounter in your interview process.
   - [How to implement a stack using queues?](#how-to-implement-a-stack-using-queues)
   - [What is a hashmap?](#what-is-a-hashmap)
   - [Which data structures are used for implementing LRU cache?](#which-data-structures-are-used-for-implementing-lru-cache)
+  - [Can we store duplicate keys in a hashmap?](#can-we-store-duplicate-keys-in-a-hashmap)
+  - [What is a priority queue?](#what-is-a-priority-queue)
+  - [What is a tree?](#what-is-a-tree)
+  - [What is a binary tree?](#what-is-a-binary-tree)
+  - [How do you calculate the maximum number of nodes in a binary tree of height h?](#how-do-you-calculate-the-maximum-number-of-nodes-in-a-binary-tree-of-height-h)
+  - [Write a recursive function to calculate the height of a binary tree?](#write-a-recursive-function-to-calculate-the-height-of-a-binary-tree)
+  - [Write a recursive function to calculate the sum of all nodes in a binary tree?](#write-a-recursive-function-to-calculate-the-sum-of-all-nodes-in-a-binary-tree)
+  - [What are tree traversals?](#what-are-tree-traversals)
+  - [What is a binary search tree?](#what-is-a-binary-search-tree)
+  - [What is an AVL tree?](#what-is-an-avl-tree)
+  - [What is a graph?](#what-is-a-graph)
+  - [What are some applications of graphs?](#what-are-some-applications-of-graphs)
+  - [How do you represent a graph?](#how-do-you-represent-a-graph)
+  - [What is the difference between a tree and a graph?](#what-is-the-difference-between-a-tree-and-a-graph)
+  - [What is a graph traversal?](#what-is-a-graph-traversal)
+  - [When do we use DFS and BFS?](#when-do-we-use-dfs-and-bfs)
 
 ### What is a data structure?
 
@@ -323,3 +339,319 @@ A LRU(Least Recently Used) cache allows quick identification of an element that 
 
   - A _Queue_ implemented using a doubly linked list. The maximum size of queue is limited by the size of the cache. The least recently used element is at the front of the queue.
   - A _hashmap_ that stores the page number as the key along with address of corresponding queue node as value.
+
+### Can we store duplicate keys in a hashmap?
+
+No, duplicate keys cannot be inserted into a hashmap. If you try to insert an entry with an existing key, then the old value is overwritten. This though will not change the size of the hashmap.
+
+### What is a priority queue?
+
+A priority is an abstract data type that can be used to represent a collection of elements that can be accessed according to the priority of the element. Elements in the priority queue are ordered according to their priority. Elements with higher priority are processed before elements with lower priority. In order to implement a priority queue, a minimum of two queues are required - one for data and the other for priority.
+
+### What is a tree?
+
+A Tree is a recursive, non-linear data structure. It is a data structure that can be used to store data in a hierarchical manner.
+It consists of a set of one or more nodes where one node is the root and the other nodes are the children. The root node is the topmost node in the tree. The children of the root node are the left and right child of the root node.
+
+The most commonly used tree data structure is a binary tree. A binary tree is a tree in which each node has at most two children. The left child is always less than the parent and the right child is always greater than the parent.
+
+Some applications of trees include:
+
+  - **File Systems**: files inside folders that are inturn inside other folders.
+  - **Comments on social media**: comments, replies to comments, replies to replies, etc.
+  - **Family trees**: parents, grandparents, great-grandparents, etc.
+
+### What is a binary tree?
+
+It is a special type of tree where each node can have at most two children. Binary tree is generally partitioned into three disjoint subsets:
+
+  - **Left Subtree**: all nodes in this subset are less than the parent node.
+  - **Right Subtree**: all nodes in this subset are greater than the parent node.
+  - **Root**: the root node is the only node in the tree that has no parent.
+
+### How do you calculate the maximum number of nodes in a binary tree of height h?
+
+  - The maximum number of node are 2^h+1 - 1 where h >= 1.
+
+  - For example, for height h = 3, the maximum number of nodes are 2^3 + 1 - 1 = 15.
+
+### Write a recursive function to calculate the height of a binary tree?
+
+A javascript implementation of the above function is given below.
+
+```
+  function height(node) {
+    if (node === null) {
+      return 0;
+    }
+    return 1 + Math.max(height(node.left), height(node.right));
+  }
+```
+
+### Write a recursive function to calculate the sum of all nodes in a binary tree?
+
+A javascript implementation of the above function is given below.
+
+```
+  function sum(node) {
+    if (node === null) {
+      return 0;
+    }
+    return node.data + sum(node.left) + sum(node.right);
+  }
+```
+
+### What are tree traversals?
+
+**Tree traversal** is a process of visiting each node of a tree in a particular order.
+
+There are three ways to traverse a tree:
+
+  - **Preorder traversal**: visit the root node first, then traverse the left subtree, then the right subtree.
+    
+    ```
+      preorder(node) {
+        if (node === null) {
+          return;
+        }
+        console.log(node.data);
+        preorder(node.left);
+        preorder(node.right);
+      }
+    ```
+
+  - **Inorder traversal**: traverse the left subtree, then the root node, then the right subtree.
+
+    ```
+      inorder(node) {
+        if (node === null) {
+          return;
+        }
+        inorder(node.left);
+        console.log(node.data);
+        inorder(node.right);
+      }
+    ```
+
+  - **Postorder traversal**: traverse the left subtree, then the right subtree, then the root node.
+
+    ```
+      postorder(node) {
+        if (node === null) {
+          return;
+        }
+        postorder(node.left);
+        postorder(node.right);
+        console.log(node.data);
+      }
+    ```
+
+### What is a binary search tree?
+
+A binary search tree is a variant of a binary tree in which each node has at most two children. The left child is always less than the parent and the right child is always greater than the parent.
+Also individually the left and right subtrees are also binary search trees.
+
+Some methods of binary search tree:
+
+  - **Insertion**: insert a node into a binary search tree.
+
+    ```
+      insert(node, data) {
+        if (node === null) {
+          return new Node(data);
+        }
+        if (data < node.data) {
+          node.left = insert(node.left, data);
+        } else {
+          node.right = insert(node.right, data);
+        }
+        return node;
+      }
+    ```
+
+  - **Search**: search for a node in a binary search tree.
+
+    ```
+      search(node, data) {
+        if (node === null) {
+          return null;
+        }
+        if (data === node.data) {
+          return node;
+        }
+        if (data < node.data) {
+          return search(node.left, data);
+        }
+        return search(node.right, data);
+      }
+    ```
+
+  - **Minimum**: find the minimum value in a binary search tree.
+
+    ```
+      min(node) {
+        if (node.left === null) {
+          return node;
+        }
+        return min(node.left);
+      }
+    ```
+
+  - **Maximum**: find the maximum value in a binary search tree.
+
+    ```
+      max(node) {
+        if (node.right === null) {
+          return node;
+        }
+        return max(node.right);
+      }
+    ```
+
+  - **Successor**: find the successor of a node in a binary search tree.
+
+    ```
+      successor(node) {
+        if (node.right !== null) {
+          return min(node.right);
+        }
+        let successor = null;
+        let current = node.parent;
+        while (current !== null && node === current.right) {
+          successor = current;
+          current = current.parent;
+        }
+        return current;
+      }
+    ```
+
+  - **Predecessor**: find the predecessor of a node in a binary search tree.
+
+    ```
+      predecessor(node) {
+        if (node.left !== null) {
+          return max(node.left);
+        }
+        let predecessor = null;
+        let current = node.parent;
+        while (current !== null && node === current.left) {
+          predecessor = current;
+          current = current.parent;
+        }
+        return current;
+      }
+    ```
+
+  - **Delete**: delete a node from a binary search tree.
+    
+    ```
+      delete(node, data) {
+        if (node === null) {
+          return null;
+        }
+        if (data < node.data) {
+          node.left = delete(node.left, data);
+        } else if (data > node.data) {
+          node.right = delete(node.right, data);
+        } else {
+          if (node.left === null && node.right === null) {
+            node = null;
+          } else if (node.left === null) {
+            node = node.right;
+          } else if (node.right === null) {
+            node = node.left;
+          } else {
+            let temp = min(node.right);
+            node.data = temp.data;
+            node.right = delete(node.right, temp.data);
+          }
+        }
+        return node;
+      }
+    ```
+
+### What is an AVL tree?
+
+An AVL tree is a self-balancing binary search tree. AVL trees check the height of left and right subtrees and rebalance the tree if the difference between the left and right subtrees is greater than 1.
+
+```
+  BalanceFactor = height(left) - height(right)
+```
+
+### What is a graph?
+
+A **graph** is a type of non-linear data structure that consists of vertices or nodes connected by edges or lines for sorting data. Edges connecting the nodes may be directed or undirected.
+
+### What are some applications of graphs?
+
+Graphs are used in wide varieties of applications including:
+
+  - **Network routing**: routing algorithms are used to find the shortest path between two nodes in a network.
+
+  - **Geographical data**: geographic data is stored in a graph.
+
+  - **Social networks**: to determine flow of information in social networking websites like Facebook, Twitter, etc.
+
+  - **Web search**: web search is stored in a graph.
+
+  - **Transport grids**: where stations are the nodes and routes are the edges of the graph.
+
+  - **Power and Water grids**: utility graphs where vertices are connection points and edges are the wires/pipes connecting them.
+
+### How do you represent a graph?
+
+You can represent a graph as an adjacency list or adjacency matrix.
+
+  - **Adjacency list**: a list of lists.
+
+    ```
+      graph = {
+        'A': ['B', 'C'],
+        'B': ['A', 'D', 'E'],
+        'C': ['A', 'F'],
+        'D': ['B'],
+        'E': ['B', 'F'],
+        'F': ['C', 'E']
+      }
+    ```
+
+  - **Adjacency matrix**: a list of lists.
+
+    ```
+      graph = [
+        ['A', 'B', 'C', 'D', 'E', 'F'],
+        ['B', 'A', 'D', 'E', 'F', 'C'],
+        ['C', 'A', 'F', 'B', 'E', 'D'],
+        ['D', 'B', 'A', 'E', 'F', 'C'],
+        ['E', 'B', 'D', 'A', 'F', 'C'],
+        ['F', 'C', 'E', 'D', 'A', 'B']
+      ]
+    ```
+
+### What is the difference between a tree and a graph?
+
+The main differences between a graph and a tree are:
+
+  - A tree structure must be connected and can never have loops whereas a graph can have loops.
+  - A tree provides insights on relationships between nodes in a hierarchical manner and graph follows a network model.
+
+### What is a graph traversal?
+
+Graph traversal is the process of traversing a graph in a particular order.
+
+There are two types of graph traversal:
+
+  - **Depth-first search**: depth-first search is a graph traversal algorithm that starts at the root node and explores as far as possible along each branch before backtracking. Depth-first search is used to find the shortest path between two nodes in a graph. DFS uses the stack data structure. It yields deeper solutions that are not optimal, but works well when the solution is dense.
+
+  - **Breadth-first search**: breadth-first search is a graph traversal algorithm that starts at the root node and explores as far as possible along each level before moving on to the next level. BFS uses the queue data structure for storing nodes. It yields more optimal solutions.
+
+### When do we use DFS and BFS?
+
+The usage of either DFS or BFS depends on the structure of the search tree/graph and the number and location of solutions needed.
+
+Consider these instances:
+
+  - If it is known that the solution is not far from the root of the tree, then BFS is the best choice.
+  - If the tree is very deep and the solutions are rare, DFS might take a long time to find the solution, but BFS could be faster.
+  - If a tree is wide, BFS might need too much memory to store the nodes, but DFS might be faster.
+  - If solutions are frequent but located far from the root of the tree(deep), we opt for DFS.
