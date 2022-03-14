@@ -56,6 +56,8 @@ _Linear data structure_: A data structure that is composed of a sequence of elem
 
 _Non-linear data structure_: If the elements of a data structure results in a way that traversal of nodes is not done in a sequential manner, then it is a non-linear data structure e.g. Trees, Graphs, Tables, Sets.
 
+[[↑] Back to top](#data-structures-questions)
+
 ### What are some applications of data structures?
 
 Data structures form the core of software programming as any efficient algorithm is dependent on how data is structured. The following are some of the areas where data structures are used:
@@ -82,6 +84,8 @@ In _procedural languages_ like C, implementation is done with the help of struct
 
 In _object oriented languages_ like Java, implementation is done with the help of classes, objects, inheritance, polymorphism.
 
+[[↑] Back to top](#data-structures-questions)
+
 ### What is the difference between file structure and storage structure?
 
 The difference lies in the way in which data is stored in a file.
@@ -90,6 +94,7 @@ _Storage structure_ is the data structure in the memory of the computer. The dat
 
 _File structure_ represents the data in auxiliary memory i.e. disk, pen drives, etc. The data is stored in secondary memory and is not deleted once the function that uses it is completed.
 
+[[↑] Back to top](#data-structures-questions)
 ### What is an array?
 
 Arrays are a special type of linear data structure. They are a collection of elements of the same type. The elements are stored in contiguous memory locations.
@@ -108,6 +113,8 @@ _Row-major order_ means that the elements are stored in the order of their row n
 
 _Column-major order_ means that the elements are stored in the order of their column number.
 
+[[↑] Back to top](#data-structures-questions)
+
 ### How do you reference elements in a one-dimensional array?
 
 You can access all the elements in a one-dimensional array using an indexed loop. The counter counts down from 0 to the maximum array size, n - 1.
@@ -117,6 +124,8 @@ You can access all the elements in a one-dimensional array using an indexed loop
 A linked list is a data structure that consists of a group of nodes, each node containing a piece of data and a reference to the next node in the list.
 
 The elements are linked using pointers to form a chain. Each element is a separate object, called a node. Each node has two items: a piece of data and a reference to the next node in the list. The entry point to the list is called the head node. The last node in the list is called the tail node. Where the list is empty, the head node is null reference and the tail node is null reference.
+
+[[↑] Back to top](#data-structures-questions)
 
 ### When do we use a linked list?
 
@@ -133,6 +142,8 @@ It is used in cases where:
 ### So is a linked list linear or not?
 
 Linked lists are considered both linear and non-linear data structures depending on the way in which they are used. When used for access strategies, it is considered as a linear data structure. When used for storage strategies, it is considered as a non-linear data structure.
+
+[[↑] Back to top](#data-structures-questions)
 
 ### How is a linked list more efficient than an array?
 
@@ -153,6 +164,8 @@ _No wastage of memory_
   - as the size of a linked list can grow or shrink based on the needs of the program, there's no memory wasted because it is allocated at runtime.
   - in arrays, if we declare the array size to be 10, and store 3 elements, then the array will occupy 10*sizeof(int) bytes of memory. Hence the memory wastage.
 
+[[↑] Back to top](#data-structures-questions)
+
 ### When do we use linked lists and arrays?
 
 Some scenarios where linked lists are preferred over arrays are:
@@ -171,6 +184,8 @@ Some scenarios where arrays are preferred over linked lists are:
     - Due to the nature of arrays and linked lists, it is safe to say that filled arrays use less memory than linked lists.
     - Each element in the array indicates just the data whereas each linked list node represents the data as well as one or more pointers.
 
+[[↑] Back to top](#data-structures-questions)
+
 ### What is a doubly linked list?
 
 It is a complex type of a linked list in which a node has two links, one that connects to the previous node and one that connects to the next node. This allows traversal across the list in both directions.
@@ -180,6 +195,8 @@ Examples of doubly linked lists are:
   - A music playlist with next and previous navigation buttons
   - A browser cache with BACK-FORWARD visited pages
   - The undo and redo functionality on a browser, where you can reverse the node to get to the previous page.
+
+[[↑] Back to top](#data-structures-questions)
 
 ### What is a stack?
 
@@ -199,6 +216,8 @@ A stack may perform 3 operations:
   - String reversal
   - parenthesis checking
   - backtracking
+
+[[↑] Back to top](#data-structures-questions)
 
 ### What is a queue?
 
@@ -220,9 +239,13 @@ Some applications of queues are to prioritize jobs such as in the following scen
   - as buffers in applications like mp3 media players and cd players.
   - To maintain playlist as in media players to add or remove songs.
 
+[[↑] Back to top](#data-structures-questions)
+
 ### How is a queue different from a stack?
 
 In a stack the element that is most recently added is removed first. In a queue the element that is most recently added is removed last.
+
+[[↑] Back to top](#data-structures-questions)
 
 ### How to implement a queue using stacks?
 
@@ -275,6 +298,8 @@ Queue `q` can be implemented in two methods:
       return s2.pop()
   ```
 
+[[↑] Back to top](#data-structures-questions)
+
 ### How to implement a stack using queues?
 
 We can implement a stack using queues. Let `s` be the stack and `q1` and `q2` be the queues. Queue supports enqueue, dequeue, init, and isEmpty operations and we need to use these to implement push, pop, and peek operations.
@@ -320,6 +345,7 @@ We can implement stack in two ways:
           q2.enqueue(q1.dequeue())
       return q2.dequeue()
   ```
+[[↑] Back to top](#data-structures-questions)
 
 ### What is a hashmap?
 
@@ -340,6 +366,8 @@ A LRU(Least Recently Used) cache allows quick identification of an element that 
   - A _Queue_ implemented using a doubly linked list. The maximum size of queue is limited by the size of the cache. The least recently used element is at the front of the queue.
   - A _hashmap_ that stores the page number as the key along with address of corresponding queue node as value.
 
+[[↑] Back to top](#data-structures-questions)
+
 ### Can we store duplicate keys in a hashmap?
 
 No, duplicate keys cannot be inserted into a hashmap. If you try to insert an entry with an existing key, then the old value is overwritten. This though will not change the size of the hashmap.
@@ -347,6 +375,8 @@ No, duplicate keys cannot be inserted into a hashmap. If you try to insert an en
 ### What is a priority queue?
 
 A priority is an abstract data type that can be used to represent a collection of elements that can be accessed according to the priority of the element. Elements in the priority queue are ordered according to their priority. Elements with higher priority are processed before elements with lower priority. In order to implement a priority queue, a minimum of two queues are required - one for data and the other for priority.
+
+[[↑] Back to top](#data-structures-questions)
 
 ### What is a tree?
 
@@ -361,6 +391,8 @@ Some applications of trees include:
   - **Comments on social media**: comments, replies to comments, replies to replies, etc.
   - **Family trees**: parents, grandparents, great-grandparents, etc.
 
+[[↑] Back to top](#data-structures-questions)
+
 ### What is a binary tree?
 
 It is a special type of tree where each node can have at most two children. Binary tree is generally partitioned into three disjoint subsets:
@@ -374,6 +406,8 @@ It is a special type of tree where each node can have at most two children. Bina
   - The maximum number of node are 2^h+1 - 1 where h >= 1.
 
   - For example, for height h = 3, the maximum number of nodes are 2^3 + 1 - 1 = 15.
+
+[[↑] Back to top](#data-structures-questions)
 
 ### Write a recursive function to calculate the height of a binary tree?
 
@@ -400,6 +434,8 @@ A javascript implementation of the above function is given below.
     return node.data + sum(node.left) + sum(node.right);
   }
 ```
+
+[[↑] Back to top](#data-structures-questions)
 
 ### What are tree traversals?
 
@@ -445,6 +481,8 @@ There are three ways to traverse a tree:
         console.log(node.data);
       }
     ```
+
+[[↑] Back to top](#data-structures-questions)
 
 ### What is a binary search tree?
 
@@ -570,6 +608,8 @@ Some methods of binary search tree:
       }
     ```
 
+[[↑] Back to top](#data-structures-questions)
+
 ### What is an AVL tree?
 
 An AVL tree is a self-balancing binary search tree. AVL trees check the height of left and right subtrees and rebalance the tree if the difference between the left and right subtrees is greater than 1.
@@ -577,6 +617,8 @@ An AVL tree is a self-balancing binary search tree. AVL trees check the height o
 ```
   BalanceFactor = height(left) - height(right)
 ```
+
+[[↑] Back to top](#data-structures-questions)
 
 ### What is a graph?
 
@@ -597,6 +639,8 @@ Graphs are used in wide varieties of applications including:
   - **Transport grids**: where stations are the nodes and routes are the edges of the graph.
 
   - **Power and Water grids**: utility graphs where vertices are connection points and edges are the wires/pipes connecting them.
+
+[[↑] Back to top](#data-structures-questions)
 
 ### How do you represent a graph?
 
@@ -628,6 +672,8 @@ You can represent a graph as an adjacency list or adjacency matrix.
       ]
     ```
 
+[[↑] Back to top](#data-structures-questions)
+
 ### What is the difference between a tree and a graph?
 
 The main differences between a graph and a tree are:
@@ -655,3 +701,5 @@ Consider these instances:
   - If the tree is very deep and the solutions are rare, DFS might take a long time to find the solution, but BFS could be faster.
   - If a tree is wide, BFS might need too much memory to store the nodes, but DFS might be faster.
   - If solutions are frequent but located far from the root of the tree(deep), we opt for DFS.
+
+[[↑] Back to top](#data-structures-questions)
