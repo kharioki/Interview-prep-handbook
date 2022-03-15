@@ -2,6 +2,14 @@
 
 Here are some interview questions I came across and their solutions.
 
+  - [Array questions](#array-questions)
+    - [Find the missing number in a given integer array of 1 to n](#find-the-missing-number-in-a-given-integer-array-of-1-to-n)
+    - [Find duplicate numbers in an array](#find-duplicate-numbers-in-an-array)
+    - [Find largest and smallest number in an array](#find-largest-and-smallest-number-in-an-array)
+    - [Find all pairs in an array whose sum is equal to a given number](#find-all-pairs-in-an-array-whose-sum-is-equal-to-a-given-number)
+    - [Sort an array in place](#sort-an-array-in-place)
+    - [Remove duplicates from an array](#remove-duplicates-from-an-array)
+    - [Revise an array](#revise-an-array)
   - [Linked list questions](#linked-list-questions)
     - [How do you find the middle element of a singly linked list in one pass?](#How-do-you-find-the-middle-element-of-a-singly-linked-list-in-one-pass)
     - [How do you reverse a linked list?](#How-do-you-reverse-a-linked-list)
@@ -25,7 +33,147 @@ Here are some interview questions I came across and their solutions.
     - [Perform postorder traversal of a binary tree](#Perform-postorder-traversal-of-a-binary-tree)
     - [Print all leaves of a binary search tree](#Print-all-leaves-of-a-binary-search-tree) ]
     - [Perform binary search in a given array](#Perform-binary-search-in-a-given-array)
-  
+
+### Array questions
+
+An array is the most fundamental data structure in the computer science. It is a collection of elements. You'll likely come across manyquestions about arrays in interviews like reversing an array, sorting or searching.
+
+The key benefit of array data structure is it offers a fast 0(1) search if you know the index, but adding or removing an element is slow because you cannot change the size of the array once its created.
+Knowledge of basic programming constructors such as loop, recursion, operators and functions will help you solve these questions.
+
+### Find the missing number in a given integer array of 1 to n
+
+```javascript
+//Input: [1, 2, 3, 5, 6, 7, 8, 9, 10]
+// expected Output: 4
+
+function findMissingNumber(arr) {
+  let n = arr.length;
+  let sum = (n + 1) * (n + 2) / 2;
+  let actualSum = 0;
+  for (let i = 0; i < n; i++) {
+    actualSum += arr[i];
+  }
+  return sum - actualSum;
+}
+```
+[[↑] Back to top](#array-questions)
+
+### Find duplicate numbers in an array
+
+```javascript
+//Input: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1]
+// expected Output: [1]
+function findDuplicate(arr) {
+  let n = arr.length;
+  let set = new Set();
+  for (let i = 0; i < n; i++) {
+    if (set.has(arr[i])) {
+      return arr[i];
+    } else {
+      set.add(arr[i]);
+    }
+  }
+}
+```
+
+### Find largest and smallest number in an array
+
+```javascript
+//Input: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// expected Output: [10, 1]
+function findLargestAndSmallest(arr) {
+  let n = arr.length;
+  let min = arr[0];
+  let max = arr[0];
+  for (let i = 1; i < n; i++) {
+    if (arr[i] < min) {
+      min = arr[i];
+    }
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return [max, min];
+}
+```
+[[↑] Back to top](#array-questions)
+
+### Find all pairs in an array whose sum is equal to a given number
+
+```javascript
+//Input: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], sum = 11
+// expected Output: [[1, 10], [2, 9], [3, 8], [4, 7], [5, 6]]
+function findPairs(arr, sum) {
+  let n = arr.length;
+  let set = new Set();
+  let result = [];
+  for (let i = 0; i < n; i++) {
+    if (set.has(arr[i])) {
+      result.push([arr[i], sum - arr[i]]);
+    } else {
+      set.add(sum - arr[i]);
+    }
+  }
+  return result;
+}
+```
+
+### Sort an array in place
+
+```javascript
+//Input: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// expected Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+function sort(arr) {
+  let n = arr.length;
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      if (arr[i] > arr[j]) {
+        let temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+  return arr;
+}
+```
+[[↑] Back to top](#array-questions)
+
+### Remove duplicates from an array
+
+```javascript
+//Input: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1]
+// expected Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+function removeDuplicates(arr) {
+  let n = arr.length;
+  let set = new Set();
+  let result = [];
+  for (let i = 0; i < n; i++) {
+    if (!set.has(arr[i])) {
+      result.push(arr[i]);
+      set.add(arr[i]);
+    }
+  }
+  return result;
+}
+```
+
+### Reverse an array in place
+
+```javascript
+//Input: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// expected Output: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+function reverse(arr) {
+  let n = arr.length;
+  let result = [];
+  for (let i = n - 1; i >= 0; i--) {
+    result.push(arr[i]);
+  }
+  return result;
+}
+```
+
 ### Linked list questions
 
 A linked list is a linear data structure that consists of a sequence of nodes. Each node contains a piece of data and a reference to the next node in the sequence. Unlike arrays, linked list nodes are not stored in contiguous memory locations.
