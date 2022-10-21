@@ -61,3 +61,103 @@ arr.reduce((acc, val) => acc.concat(val), []);
 const flattened = arr => [].concat(...arr);
 ```
 
+#### Using `reduce` and `concat` and `isArray` recursively
+
+This solution checks each value in our reduce function to see if its value is an array. If the value is an array then we recursively call our helper method as many levels deep as we define in our depth `d` parameter.
+  
+```js
+  // const arr = [1, 2, [[3, 4], 5, [6]]];
+  function flatten(arr, d = 1) {
+    return arr.reduce((a, v) => a.concat(d > 1 && Array.isArray(v) ? flatten(v, d - 1) : v), []);
+  }
+  flatten(arr, Infinity);
+  // [1, 2, 3, 4, 5, 6]
+```
+
+#### Using a stack and a while loop
+
+With this solution, we loop through our array in a last-in-first-out order, taking from the back of the array. We make a copy of our array, and start popping elements off the back and pushing them into a new array. Before we push each element into our result array, we check if that element is an array. If it is, then we take the contents of that array and push them to the end of our array. Those elements will be added in the same order as before, just no longer in a nested array. If we find an array, the process will repeat itself. 
+
+Before we `push` and `pop` to add elements in our result array, the array will be backwards, so we `reverse` to flip our array back in the correct order. This is more efficient than using `shift` and `unshift` as those methods are O(n) and `push` and `pop` are O(1).
+
+```js
+  // non recursive flatten deep using a stack. note that depth control is hard/inefficient as we will need to tag EACH element with its depth
+  function flattenDeep(arr) {
+    const result = [];
+    const stack = [...arr];
+    while (stack.length) {
+      // use stack methods to be faster
+      const next = stack.pop();
+      if (Array.isArray(next)) {
+        // push back array items, won't modify the original input
+        stack.push(...next);
+      } else {
+        result.push(next);
+      }
+    }
+    // we reverse to restore input order
+    return result.reverse();
+  }
+
+  const arr = [1, 2, [[3, 4], 5, [6]]];
+  flattenDeep(arr);
+  // [1, 2, 3, 4, 5, 6]
+```
+
+#### Using a generator function
+
+A generator is a function that acts as an iterable until a condition is met. Generators can be exited and re-entered, and they can be paused and resumed. This is useful for flattening an array because we can pause the generator function when we find a nested array, and resume it when we find a single element.
+
+```js
+  function* flatten(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (Array.isArray(arr[i])) {
+        yield* flatten(arr[i]);
+      } else {
+        yield arr[i];
+      }
+    }
+  }
+  const arr = [1, 2, [[3, 4], 5, [6]]];
+  [...flatten(arr)];
+  // [1, 2, 3, 4, 5, 6]
+```
+
+```js
+  // using a generator function with defined depth
+  function* flatten(arr, depth) {
+    if(depth === undefined) depth = 1;
+    for (let i = 0; i < arr.length; i++) {
+      if (Array.isArray(arr[i]) && depth > 0) {
+        yield* flatten(arr[i], depth - 1);
+      } else {
+        yield arr[i];
+      }
+    }
+  }
+
+  const arr = [1, 2, [[3, 4], 5, [6]]];
+  const flattened = [...flatten(arr, Infinity)];
+```
+
+#### Using Array.flat()
+
+This function flattens an array one level deep, but you can pass in a number to define as many levels deep as you want to go. If you don't care how deep you drill, just pass in the `infinity` keyword
+
+```js
+  const arr = [1, 2, [[3, 4], 5, [6]]];
+  arr.flat(Infinity);
+  // [1, 2, 3, 4, 5, 6]
+
+  // 1 level deep
+  arr.flat();
+  // [1, 2, [3, 4], 5, [6]]
+
+  // 2 levels deep
+  arr.flat(2);
+  // [1, 2, 3, 4, 5, 6]
+
+  // 3 levels deep
+  arr.flat(3);
+  // [1, 2, 3, 4, 5, 6]
+```
