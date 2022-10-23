@@ -42,6 +42,20 @@ function flatten(arr) {
 }
 ```
 
+#### Using  the iterative `Array.prototype.some` method
+
+The `some` method tests whether at least one element in the array passes the test implemented by the provided function. It returns a Boolean value.
+
+```js
+function flatten(arr) {
+  let result = [];
+  while (arr.some(Array.isArray)) {
+    arr = [].concat(...arr);
+  }
+  return arr;
+}
+```
+
 #### Using the `reduce` and `concat` methods
 
 This solution only flattens one level deep. You can use `concat` to add both single elements of a nested array into the accumulator array.
@@ -159,5 +173,54 @@ This function flattens an array one level deep, but you can pass in a number to 
 
   // 3 levels deep
   arr.flat(3);
+  // [1, 2, 3, 4, 5, 6]
+```
+
+#### Flattening the array in-place
+
+So far we have been creating a new array to store our flattened array. We can also flatten the array in-place, which means we will modify the original array. This is a destructive operation, so we should be careful when using it.
+
+Sometimes the interviewer might ask you to implement an in-place solution that doesn't allocate extra memory. That is, a solution with a constant O(1) space complexity. 
+In this case, you will need to leverage array methods that mutate. There are 9 methods in total that mutate arrays: `copyWithin`, `fill`, `pop`, `push`, `reverse`, `shift`, `sort`, `splice`, and `unshift`.
+
+```js
+  function flatten(array) {
+    for (let i = 0; i < array.length; i++) {
+      if (Array.isArray(array[i])) {
+        array.splice(i, 1, ...array[i]);
+        i--;
+      }
+    }
+    return array;
+  }
+```
+
+```js
+  // const arr = [1, 2, [[3, 4], 5, [6]]];
+  function flattenInPlace(arr) {
+    let i = 0;
+    while (i < arr.length) {
+      if (Array.isArray(arr[i])) {
+        arr.splice(i, 1, ...arr[i]);
+      } else {
+        i++;
+      }
+    }
+    return arr;
+  }
+  flattenInPlace(arr);
+  // [1, 2, 3, 4, 5, 6]
+```
+
+#### Using `flatMap` recursive approach
+
+The `flatMap` function method returns a new array formed by applying a given callback function to each element of the array, and then flattening the result by one level. By calling it recursively, we can flatten the entire array until it is only one level deep.
+
+```js
+  const arr = [1, 2, [[3, 4], 5, [6]]];
+
+  function flatten(value) {
+    return Array.isArray(value) ? value.flatMap((item) => flatten(item)) : value;
+  }
   // [1, 2, 3, 4, 5, 6]
 ```
