@@ -93,3 +93,24 @@ function getSide(p1, p2) {
 
   return (y2 - y1) / (x2 - x1);
 }
+
+// another way to do it
+function validTriangle(p, q, a, b, c) {
+  // find the slope of the line segment pq
+  let slopePQ = (q[1] - p[1]) / (q[0] - p[0]);
+  // find the slope of the line segment ab
+  let slopeAB = (b[1] - a[1]) / (b[0] - a[0]);
+  // find the slope of the line segment bc
+  let slopeBC = (c[1] - b[1]) / (c[0] - b[0]);
+  // find the slope of the line segment ca
+  let slopeCA = (a[1] - c[1]) / (a[0] - c[0]);
+  // if the slope of pq is equal to the slope of ab or bc or ca, return true
+  if (slopePQ === slopeAB || slopePQ === slopeBC || slopePQ === slopeCA) {
+    return true;
+  }
+  // otherwise, return false
+  return false;
+}
+
+validTriangle([1, 1], [2, 2], [1, 2], [2, 1], [3, 1])
+// => true
